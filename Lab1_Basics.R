@@ -2,20 +2,21 @@
 # install.packages("statnet")
 
 library(statnet)
+library(tidyverse)
 
 #change working directory
-setwd("E:/Teaching/Emory/TADA/2022_S/Labs")
-
+library(here)
+here()
 ### Import data
 # If no header, set "header = F". 
-data <- read.csv("Manager_friends.csv", header = T)
+data <- as.matrix(read.csv("Manager_friends.csv"))
 
 ## Import attributes.
-att <- read.csv("Manager_att.csv", header = T)
+att <- read_csv("Manager_att.csv")
 
 ### Create a network object
 # If the network is undirected, set "directed = F". 
-Fnet <- network(data, directed = T)
+Fnet <- network(data, directed = TRUE)
 
 ### Plot the network
 plot.network(Fnet, displaylabels = T, boxed.labels = FALSE, vertex.cex = 0.6, label.cex = 1, 
