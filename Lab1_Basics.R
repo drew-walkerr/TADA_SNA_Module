@@ -18,6 +18,7 @@ att <- read_csv("Manager_att.csv")
 # If the network is undirected, set "directed = F". 
 Fnet <- network(data, directed = TRUE)
 
+set.seed(123456)
 ### Plot the network
 plot.network(Fnet, displaylabels = T, boxed.labels = FALSE, vertex.cex = 0.6, label.cex = 1, 
              vertex.col = att$dept, label.col = "blue", edge.lwd = .5, edge.col = "gray50")
@@ -56,9 +57,11 @@ write.csv(tab1, file = "tab1.csv")
 
 ### Dyad level
 dyad.census(Fnet)
+# Gives number of mutual, asymmetric, and neutral ties 
 
 # reciprocity. It counts null ties as mutual ties
 reciprocity <- grecip(Fnet)
+reciprocity
 (24+174)/(24+174+12)
 
 # Ignoring null ties in calculating reciprocity. Mutual ties count as twice.
@@ -94,4 +97,4 @@ cent <- centralization(Fnet, degree)
 # transitivity. Proportion of transitive triads out of possible transitive triads.
 # Divide the number of {AB, BC, AC} triads by the number of {AB, BC, anything} triads.
 transitivity <- gtrans(Fnet)
-
+transitivity
